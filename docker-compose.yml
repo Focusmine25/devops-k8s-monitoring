@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    image: devops-k8s-monitoring-backend:local
+    ports:
+      - "5000:5000"
+  frontend:
+    build: ./frontend
+    image: devops-k8s-monitoring-frontend:local
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    # For local dev, if frontend needs to call backend via /api, we can use a tiny nginx reverse proxy or CORS.

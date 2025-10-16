@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  backend:
+    repository: backend:local
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  frontend:
+    repository: frontend:local
+    pullPolicy: IfNotPresent
+    tag: "latest"
+
+service:
+  backend:
+    port: 5000
+  frontend:
+    port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: "devops.local"
+      paths:
+        - path: /
+          pathType: Prefix
